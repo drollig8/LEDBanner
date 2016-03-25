@@ -11,14 +11,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let digitController = DigitControllerView()
+    var digitController: DigitControllerView!
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /* Show Background
+        let display = DisplayController(frame:  self.view.frame)
+        display.backgroundColor = UIColor.greenColor()
+        self.view.addSubview(display)
+        display.showLoadingMessage()
+        */
+        
+        digitController = DigitControllerView(frame: self.view.frame)
+        digitController = DigitControllerView(frame: CGRect(x: 0, y: 20, width: view.frame.width, height: self.view.frame.height))
         digitController.text = "This is a message"
-        digitController.initDisplay()
         self.view.addSubview(digitController)
-        displayAnimation()
+     //   displayAnimation()
+        
     }
     
     // 25 Hz
@@ -43,8 +58,6 @@ class ViewController: UIViewController {
             transition.type = kCATransitionFade
             digitController.displayNextFrame()
             CATransaction.commit()
-        
-
     }
 
 
