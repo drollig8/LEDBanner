@@ -13,6 +13,9 @@
 		6EC2B4491CA461E2000A0E72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B4481CA461E2000A0E72 /* Assets.xcassets */; };
 		6EC2B44C1CA461E2000A0E72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B44A1CA461E2000A0E72 /* LaunchScreen.storyboard */; };
 		6EC2B4571CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4561CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift */; };
+		6EC2B4621CA4620A000A0E72 /* DigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4611CA4620A000A0E72 /* DigitTests.swift */; };
+		6EC2B4641CA46260000A0E72 /* DigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4631CA46260000A0E72 /* DigitView.swift */; };
+		6EC2B4661CA53C4D000A0E72 /* DigitControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4651CA53C4D000A0E72 /* DigitControllerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		6EC2B4521CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TDDLaufschriftPruefungsAufgabeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC2B4561CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDDLaufschriftPruefungsAufgabeTests.swift; sourceTree = "<group>"; };
 		6EC2B4581CA461E2000A0E72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6EC2B4611CA4620A000A0E72 /* DigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitTests.swift; sourceTree = "<group>"; };
+		6EC2B4631CA46260000A0E72 /* DigitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
+		6EC2B4651CA53C4D000A0E72 /* DigitControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitControllerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				6EC2B4411CA461E2000A0E72 /* AppDelegate.swift */,
+				6EC2B4631CA46260000A0E72 /* DigitView.swift */,
+				6EC2B4651CA53C4D000A0E72 /* DigitControllerView.swift */,
 				6EC2B4431CA461E2000A0E72 /* ViewController.swift */,
 				6EC2B4451CA461E2000A0E72 /* Main.storyboard */,
 				6EC2B4481CA461E2000A0E72 /* Assets.xcassets */,
@@ -91,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				6EC2B4561CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift */,
+				6EC2B4611CA4620A000A0E72 /* DigitTests.swift */,
 				6EC2B4581CA461E2000A0E72 /* Info.plist */,
 			);
 			path = TDDLaufschriftPruefungsAufgabeTests;
@@ -197,8 +206,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EC2B4661CA53C4D000A0E72 /* DigitControllerView.swift in Sources */,
 				6EC2B4441CA461E2000A0E72 /* ViewController.swift in Sources */,
 				6EC2B4421CA461E2000A0E72 /* AppDelegate.swift in Sources */,
+				6EC2B4641CA46260000A0E72 /* DigitView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EC2B4571CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift in Sources */,
+				6EC2B4621CA4620A000A0E72 /* DigitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +400,7 @@
 				6EC2B45D1CA461E2000A0E72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6EC2B45E1CA461E2000A0E72 /* Build configuration list for PBXNativeTarget "TDDLaufschriftPruefungsAufgabeTests" */ = {
 			isa = XCConfigurationList;
@@ -396,6 +409,7 @@
 				6EC2B4601CA461E2000A0E72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
