@@ -21,12 +21,7 @@ protocol DisplayViewDataSource {
 
 class DisplayView:UIView {
     
-    var text = ""
-    
-    // obsolet
-    var currentTextSegment = "Dies ist ein Test."
-    var currentTextSegments = [String]()
-    
+    var currentTextSegment = ""
     var frameNumber = -1
     var background: UIImageView!
     var yOffset = 1
@@ -190,6 +185,9 @@ class DisplayView:UIView {
   
     func getCodeForFrameWithFirstletter(firstletter: Character, secondLetter: Character, forTimeFrame timeframe: Int) -> [[Int]] {
         
+        // causes 5% CPU
+        var newRowNotation = [[Int]]()
+        
         let firstCharacterCode = codeForCharacter(firstletter)
         let secondCharacterCode = codeForCharacter(secondLetter)
         
@@ -220,13 +218,15 @@ class DisplayView:UIView {
             newCol.append(iColB[i])
         }
         
-        var newRowNotation = [[Int]]()
+        
         
         for i in 0..<8 {
             let colum = getColumOfCode(newCol, colum: i)
             newRowNotation.append(colum)
         }
+
         return newRowNotation
+
     }
     
     func getColumOfCode(code:[[Int]], colum: Int) -> [Int] {
@@ -236,8 +236,28 @@ class DisplayView:UIView {
         }
         return result
     }
-     
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[self.startIndex.advancedBy(i)]
+    }
+    
+}
+
+extension UIColor {
+    
+    class func iKVBDisplayDigitOn()-> UIColor {
+        return UIColor(red: 255/255, green: 206/255, blue: 109/255, alpha: 1.0)
+    }
+    class func iKVBDisplayDigitOff()-> UIColor {
+        return UIColor(red: 60/255, green: 45/255, blue: 45/255, alpha: 1.0)
+    }
+}
+

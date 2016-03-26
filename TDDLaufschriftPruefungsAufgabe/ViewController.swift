@@ -21,7 +21,7 @@ class ViewController: UIViewController,DisplayViewDataSource {
         displayView = DisplayView(frame: CGRect(x: 20, y: 20, width: 280, height: 200))
         self.view.addSubview(displayView)
         
-        displayView.currentTextSegment = "This is an animated Row."
+        displayView.currentTextSegment = "This is an animated Row.This is an animated Row."
         displayView.dataSource = self
         
         displayView.displayFrame()
@@ -53,10 +53,3 @@ class ViewController: UIViewController,DisplayViewDataSource {
 
 }
 
-extension String {
-    
-    subscript (i: Int) -> Character {
-        return self[self.startIndex.advancedBy(i)]
-    }
-    
-}
