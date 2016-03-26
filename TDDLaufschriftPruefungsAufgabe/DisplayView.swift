@@ -9,15 +9,14 @@
 import UIKit
 
 
-protocol DisplayViewDataSource {
-   
-    func refreshIntervalInDisplayView(refreshInterval: DisplayView) -> NSTimeInterval
+@objc protocol DisplayViewDataSource {
+    
+    optional func refreshIntervalInDisplayView(refreshInterval: DisplayView) -> NSTimeInterval
     func numberOfRowInDisplayView(displayView: DisplayView) -> Int
     func displayView(displayView: DisplayView, testAtRow row: Int) -> String?
     func displayView(displayView: DisplayView, isAnimatedAtRow row: Int) -> Bool
-
+    
 }
-
 
 class DisplayView:UIView {
     
@@ -41,21 +40,20 @@ class DisplayView:UIView {
     }
     
     func startAnimation() {
-
-        let refreshInterval = dataSource.refreshIntervalInDisplayView(self)
+        
+        if let refreshInterval = dataSource.refreshIntervalInDisplayView?(self) {
             CATransaction.begin()
             CATransaction.setCompletionBlock {
                 let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(refreshInterval * NSTimeInterval(NSEC_PER_SEC)))
                 if self.animationShouldBeRunning {
                     dispatch_after(delay, dispatch_get_main_queue()) {
-                         self.startAnimation()
-                        }
+                        self.startAnimation()
+                    }
                 }
             }
             displayAnimatedFrame()
             CATransaction.commit()
-        
-        
+        }
     }
     
     func stopAnimation() {
@@ -227,6 +225,11 @@ class DisplayView:UIView {
 
         return newRowNotation
 
+    }
+    
+    func reloadData() {
+        clearDisplay()
+        displayFrame()
     }
     
     func getColumOfCode(code:[[Int]], colum: Int) -> [Int] {
