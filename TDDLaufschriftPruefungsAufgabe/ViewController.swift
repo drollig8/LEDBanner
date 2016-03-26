@@ -9,57 +9,47 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,DisplayViewDataSource {
 
-    var digitController: DigitControllerView!
-    
-    
-    
-    
-    
-    
-    override func viewDidLoad() {
+    var displayView: DisplayView!
+    var messageArray = ["Dies ist ein Test1","Bla","Blub"]
+     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.lightGrayColor()
         
-        /* Show Background
-        let display = DisplayController(frame:  self.view.frame)
-        display.backgroundColor = UIColor.greenColor()
-        self.view.addSubview(display)
-        display.showLoadingMessage()
-        */
+        displayView = DisplayView(frame: self.view.frame)
+        displayView = DisplayView(frame: CGRect(x: 20, y: 20, width: 280, height: 200))
+        self.view.addSubview(displayView)
         
-        digitController = DigitControllerView(frame: self.view.frame)
-        digitController = DigitControllerView(frame: CGRect(x: 0, y: 20, width: view.frame.width, height: self.view.frame.height))
-        digitController.text = "This is a message"
-        self.view.addSubview(digitController)
-     //   displayAnimation()
+        displayView.currentTextSegment = "This is an animated Row."
+        displayView.dataSource = self
+        
+        displayView.displayFrame()
+        displayView.startAnimation()
+      //  displayView.stopAnimation()
+      
         
     }
     
-    // 25 Hz
-    let animationDuration: NSTimeInterval = 0.01
-    let switchingInterval: NSTimeInterval = 0.01
+    // Diplay View Datasource
 
-    func updateUI() {
-        
+    
+    func refreshIntervalInDisplayView(refreshInterval: DisplayView) -> NSTimeInterval {
+        return 0.04
     }
     
-    
-    func displayAnimation() {
-           CATransaction.begin()
-            CATransaction.setAnimationDuration(animationDuration)
-            CATransaction.setCompletionBlock {
-                let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(self.switchingInterval * NSTimeInterval(NSEC_PER_SEC)))
-                dispatch_after(delay, dispatch_get_main_queue()) {
-                    self.displayAnimation()
-                }
-            }
-            let transition = CATransition()
-            transition.type = kCATransitionFade
-            digitController.displayNextFrame()
-            CATransaction.commit()
+    func numberOfRowInDisplayView(displayView: DisplayView) -> Int {
+       return messageArray.count
     }
-
+    
+    // there can always only be one row animated.
+    func displayView(displayView: DisplayView, isAnimatedAtRow row: Int) -> Bool {
+        if row == 1 { return true }
+        return false
+    }
+    func displayView(displayView: DisplayView, testAtRow row: Int) -> String? {
+        return messageArray[row]
+    }
 
 }
 

@@ -23,24 +23,13 @@ class DigitTests: XCTestCase {
     
     func testDigitCanTakeFirstLetter() {
         
-        
-        let digit = DigitView(frame: CGRectZero)
-        let code = digit.codeForCharacter("a")
-        let firstCol = digit.getColumOfCode(code, colum: 0)
-        print(firstCol)
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+        _ = viewController.view
+     
     }
 
-    func testDigitCanTakeFirstLetter1() {
-        
-        
-        let digit = DigitView(frame: CGRectZero)
-        let code = digit.getMatrixForFrame(0)
-        
-        
-    }
-    
-
+ 
     
     
 }

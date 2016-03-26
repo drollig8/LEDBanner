@@ -8,59 +8,66 @@
 
 import UIKit
 
-class DigitControllerView:UIView {
+
+protocol DisplayViewDataSource {
+   
+    func refreshIntervalInDisplayView(refreshInterval: DisplayView) -> NSTimeInterval
+    func numberOfRowInDisplayView(displayView: DisplayView) -> Int
+    func displayView(displayView: DisplayView, testAtRow row: Int) -> String?
+    func displayView(displayView: DisplayView, isAnimatedAtRow row: Int) -> Bool
+
+}
+
+
+class DisplayView:UIView {
     
     var text = ""
-    var currentTextSegment = ""
+    
+    // obsolet
+    var currentTextSegment = "Dies ist ein Test."
+    var currentTextSegments = [String]()
+    
     var frameNumber = -1
     var background: UIImageView!
-    var yOffset = 30
+    var yOffset = 1
     let cornerRadius:CGFloat = 2
     let digitSize = 2
+    var dataSource: DisplayViewDataSource!
+    var animationShouldBeRunning = true
     
-
+    // next step: create more than one row.
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        background = UIImageView(frame: frame)
+        background = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         let image = UIImage(named: "displayBackground")
         background.image = image
         self.addSubview(background)
-        
-        
-     //   drawLineForFrameWithCurrentTextSegment("Dies ist ein Test", forTimeFrame: 0)
-        currentTextSegment = "Dies ist ein Test. "
-        startAnimation()
     }
     
     func startAnimation() {
-        
-        
-        
-        let animationDuration: NSTimeInterval = 0.1
-        let switchingInterval: NSTimeInterval = 0.1
 
+        let refreshInterval = dataSource.refreshIntervalInDisplayView(self)
             CATransaction.begin()
-            CATransaction.setAnimationDuration(animationDuration)
             CATransaction.setCompletionBlock {
-                let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(switchingInterval * NSTimeInterval(NSEC_PER_SEC)))
-                dispatch_after(delay, dispatch_get_main_queue()) {
-                    self.startAnimation()
+                let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(refreshInterval * NSTimeInterval(NSEC_PER_SEC)))
+                if self.animationShouldBeRunning {
+                    dispatch_after(delay, dispatch_get_main_queue()) {
+                         self.startAnimation()
+                        }
                 }
             }
-            let transition = CATransition()
-            transition.type = kCATransitionFade
-            displayFrame()
+            displayAnimatedFrame()
             CATransaction.commit()
         
         
     }
     
     func stopAnimation() {
-        
+        animationShouldBeRunning = false
     }
     
-    func drawLineForFrameWithCurrentTextSegment(currentSegmentTextString:String, forTimeFrame timeframe:Int) {
+    func drawLineForFrameWithCurrentTextSegment(currentSegmentTextString:String, forTimeFrame timeframe:Int, toRow row:Int) {
         
         let text = (currentSegmentTextString + "\(currentSegmentTextString[0])")
         for index in 0..<text.characters.count - 1 {
@@ -69,30 +76,75 @@ class DigitControllerView:UIView {
             let secondletter = text[index+1]
             let code = getCodeForFrameWithFirstletter(firstletter, secondLetter: secondletter, forTimeFrame: timeframe)
             
-            drawLetterWithCode(code, atPosition: index)
-
+            drawLetterWithCode(code, atPosition: index, toRow: row)
         }
 
     }
+   
     
+    var animatedRows = [UIView]()
     func clearDisplay() {
         for view in background.subviews {
             view.removeFromSuperview()
         }
     }
+
+    func clearAnimatedRows() {
+        for view in animatedRows {
+            view.removeFromSuperview()
+        }
+        animatedRows.removeAll()
+    }
+    
+    
+    func displayAnimatedFrame() {
+        let numberOfRows = dataSource.numberOfRowInDisplayView(self)
+        
+        for row in 0..<numberOfRows {
+            
+            if dataSource.displayView(self, isAnimatedAtRow: row)  {
+                clearAnimatedRows()
+                
+                if frameNumber < 5 {
+                frameNumber++
+                } else {
+                currentTextSegment = rotateToNextLetter(currentTextSegment)
+                frameNumber = 1
+                }
+                drawLineForFrameWithCurrentTextSegment(currentTextSegment, forTimeFrame: frameNumber, toRow: row)
+
+            }
+        }
+    }
+    
     
     func displayFrame() {
+        let numberOfRows = dataSource.numberOfRowInDisplayView(self)
         
-        clearDisplay()
+        for row in 0..<numberOfRows {
+            let  textToDisplay = dataSource.displayView(self, testAtRow: row)
+            if frameNumber == -1 {frameNumber = 0}
+            if let text = textToDisplay {
+                drawLineForFrameWithCurrentTextSegment(text, forTimeFrame: frameNumber, toRow: row)
+            }
+        }
+    }
+    
+    func displayAnimatedFrame(row:Int) {
+        clearAnimatedRows()
         if frameNumber < 5 {
             frameNumber++
         } else {
             currentTextSegment = rotateToNextLetter(currentTextSegment)
             frameNumber = 1
         }
-        
-        drawLineForFrameWithCurrentTextSegment(currentTextSegment, forTimeFrame: frameNumber)
-        
+        drawLineForFrameWithCurrentTextSegment(currentTextSegment, forTimeFrame: frameNumber, toRow: row)
+    }
+    
+    
+    func displayView(displayView: DisplayView, isAnimatedAtRow row: Int) -> Bool {
+        if row == 0 { return false }
+        return true
     }
     
     func rotateToNextLetter(currentTextSegment:String) -> String {
@@ -102,7 +154,7 @@ class DigitControllerView:UIView {
         return String(neuesTeilSegment) + String(firstCharacter)
     }
 
-    func drawLetterWithCode(code: [[Int]], atPosition position:Int) {
+    func drawLetterWithCode(code: [[Int]], atPosition position:Int, toRow row:Int) {
         
         let xPos = position * 5 * digitSize
         
@@ -111,8 +163,15 @@ class DigitControllerView:UIView {
                 
                 if codeBit == 1 {
                     let element = UIView(frame: CGRect(x: xPos + line*digitSize, y: yPos, width: digitSize, height: digitSize))
+                    
+                    //if sizeExceedsRightFrameBorder()
+                    if element.frame.origin.x > (background.frame.width + background.frame.origin.x) { return }
+                    
                     element.layer.cornerRadius = cornerRadius
                     element.backgroundColor = UIColor.iKVBDisplayDigitOn()
+                    if self.displayView(self, isAnimatedAtRow: row) {
+                        animatedRows.append(element)
+                    }
                     background.addSubview(element)
                 }
             }
@@ -120,23 +179,22 @@ class DigitControllerView:UIView {
         
 
         for (zeile,code) in code.enumerate() {
-            addLineAtPosition((zeile+1)*digitSize+yOffset,rowdescription: code)
+            
+            let yPos = (zeile+1)*digitSize+yOffset + row * digitSize * 8
+            addLineAtPosition(yPos,rowdescription: code)
         }
     }
     
     
     
-    
+  
     func getCodeForFrameWithFirstletter(firstletter: Character, secondLetter: Character, forTimeFrame timeframe: Int) -> [[Int]] {
         
         let firstCharacterCode = codeForCharacter(firstletter)
         let secondCharacterCode = codeForCharacter(secondLetter)
         
-// das hier ist u.U. CPU intensiv
-        // tausche spalten und reihen.
-        
+
         var iColA = [[Int]]()
-        
         for i in 0..<5 {
             let colum = getColumOfCode(firstCharacterCode, colum: i)
             iColA.append(colum)
@@ -152,20 +210,15 @@ class DigitControllerView:UIView {
         
         var newCol = [[Int]]()
         
-        // trenne vorne so viele ab, wie wir nicht wollen
-        
         let startCol = timeframe
         
         for i in startCol..<5 {
-            
             newCol.append(iColA[i])
         }
         
         for i in 0..<5-(5-startCol) {
             newCol.append(iColB[i])
         }
-        
-        
         
         var newRowNotation = [[Int]]()
         
@@ -176,93 +229,14 @@ class DigitControllerView:UIView {
         return newRowNotation
     }
     
-    
- 
-    
-    
     func getColumOfCode(code:[[Int]], colum: Int) -> [Int] {
-        
         var result = [Int]()
         for row in code {
-            
             result.append(row[colum])
         }
         return result
     }
-    
-    
-    
-    
-    
-    
-    // ALT
-    
-    private func initDisplay() {
-         currentTextSegment = text + " "
-         initDisplayWithCharacterString(currentTextSegment)
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    func initDisplayWithCharacterString(characterString: String) {
-        for i in 0..<characterString.characters.count-1 {
-    
-            let digitView = DigitView(frame: CGRect(x: i*5*5 + 100, y: 100, width: 20, height: 30))
-            digitView.backgroundColor = UIColor.lightGrayColor()
-            digitView.tag = i
-            setCharactersToDisplayDigit(digitView, currentTextSegment: currentTextSegment, i: i)
-            self.addSubview(digitView)
-        }
-    }
-    
-     func updateDisplayWithCharacterString(characterString: String) {
-        
-        for view in self.subviews {
-            if let view = view as? DigitView {
-                setCharactersToDisplayDigit(view, currentTextSegment: currentTextSegment, i: view.tag)
-            }
-        }
-    }
-    
-    func gotoNextLetter() -> String {
-        
-        let firstCharacter = currentTextSegment.characters.first!
-        let neuesTeilSegment = currentTextSegment.characters.dropFirst()
-        return String(neuesTeilSegment) + String(firstCharacter)
-    }
-    
-    func setCharactersToDisplayDigit(digitView: DigitView, currentTextSegment:String, i:Int) {
-        let firstletter = currentTextSegment[i]
-        let secondletter = currentTextSegment[i+1]
-        digitView.firstletter = firstletter
-        digitView.secondletter = secondletter
-    }
-    
-    func displayNextFrame() {
-        
-        if frameNumber < 5 {
-            frameNumber++
-        } else {
-            currentTextSegment = gotoNextLetter()
-            updateDisplayWithCharacterString(currentTextSegment)
-            frameNumber = 0
-        }
-
-        for view in self.subviews {
-            if let view = view as? DigitView {
-                view.showFrame(frameNumber)
-            }
-        }
-        
-    }
-    
-
-    
+     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

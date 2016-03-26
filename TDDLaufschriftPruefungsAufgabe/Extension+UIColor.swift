@@ -9,19 +9,7 @@
 import UIKit
 
 extension UIColor {
-    
-    class func myWaterLightBlue() -> UIColor {
-        return UIColor(red: 218/255, green: 233/255, blue: 241/255, alpha: 1.0)
-    }
-    
-    class func myWaterTextColorDarkBlue() -> UIColor {
-        return UIColor(red: 9/255, green: 62/255, blue: 89/255, alpha: 1.0)
-    }
-    
-    class func myWaterSegmentedControlDarkGrey() -> UIColor {
-        return UIColor(red: 102/255, green: 134/255, blue: 150/255, alpha: 1.0)
-    }
-    
+
     class func iKVBDisplayDigitOn()-> UIColor {
         return UIColor(red: 255/255, green: 206/255, blue: 109/255, alpha: 1.0)
     }

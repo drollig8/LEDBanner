@@ -14,17 +14,10 @@
 		6EC2B44C1CA461E2000A0E72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B44A1CA461E2000A0E72 /* LaunchScreen.storyboard */; };
 		6EC2B4571CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4561CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift */; };
 		6EC2B4621CA4620A000A0E72 /* DigitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4611CA4620A000A0E72 /* DigitTests.swift */; };
-		6EC2B4641CA46260000A0E72 /* DigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4631CA46260000A0E72 /* DigitView.swift */; };
-		6EC2B4661CA53C4D000A0E72 /* DigitControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4651CA53C4D000A0E72 /* DigitControllerView.swift */; };
-		6EC2B4681CA574CE000A0E72 /* DisplayDigit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4671CA574CE000A0E72 /* DisplayDigit.swift */; };
-		6EC2B46A1CA574D4000A0E72 /* DisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4691CA574D4000A0E72 /* DisplayController.swift */; };
-		6EC2B46D1CA57546000A0E72 /* TrainInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B46C1CA57546000A0E72 /* TrainInfo.swift */; };
+		6EC2B4661CA53C4D000A0E72 /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4651CA53C4D000A0E72 /* DisplayView.swift */; };
 		6EC2B46F1CA57561000A0E72 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B46E1CA57561000A0E72 /* Extension+UIColor.swift */; };
-		6EC2B4711CA576CB000A0E72 /* displayBackgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B4701CA576CB000A0E72 /* displayBackgroundImage.png */; };
 		6EC2B4731CA57B79000A0E72 /* CodeForCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC2B4721CA57B79000A0E72 /* CodeForCharacter.swift */; };
-		6EC2B4751CA58A42000A0E72 /* displayBackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B4741CA58A42000A0E72 /* displayBackground1.png */; };
 		6EC2B4771CA58ACD000A0E72 /* displayBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B4761CA58ACD000A0E72 /* displayBackground.png */; };
-		6EC2B4791CA58AD9000A0E72 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC2B4781CA58AD9000A0E72 /* background2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,17 +42,10 @@
 		6EC2B4561CA461E2000A0E72 /* TDDLaufschriftPruefungsAufgabeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDDLaufschriftPruefungsAufgabeTests.swift; sourceTree = "<group>"; };
 		6EC2B4581CA461E2000A0E72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC2B4611CA4620A000A0E72 /* DigitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitTests.swift; sourceTree = "<group>"; };
-		6EC2B4631CA46260000A0E72 /* DigitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitView.swift; sourceTree = "<group>"; };
-		6EC2B4651CA53C4D000A0E72 /* DigitControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitControllerView.swift; sourceTree = "<group>"; };
-		6EC2B4671CA574CE000A0E72 /* DisplayDigit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayDigit.swift; sourceTree = "<group>"; };
-		6EC2B4691CA574D4000A0E72 /* DisplayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayController.swift; sourceTree = "<group>"; };
-		6EC2B46C1CA57546000A0E72 /* TrainInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainInfo.swift; sourceTree = "<group>"; };
+		6EC2B4651CA53C4D000A0E72 /* DisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 		6EC2B46E1CA57561000A0E72 /* Extension+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
-		6EC2B4701CA576CB000A0E72 /* displayBackgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = displayBackgroundImage.png; sourceTree = "<group>"; };
 		6EC2B4721CA57B79000A0E72 /* CodeForCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeForCharacter.swift; sourceTree = "<group>"; };
-		6EC2B4741CA58A42000A0E72 /* displayBackground1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = displayBackground1.png; sourceTree = "<group>"; };
 		6EC2B4761CA58ACD000A0E72 /* displayBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = displayBackground.png; sourceTree = "<group>"; };
-		6EC2B4781CA58AD9000A0E72 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,19 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				6EC2B4431CA461E2000A0E72 /* ViewController.swift */,
-				6EC2B46C1CA57546000A0E72 /* TrainInfo.swift */,
 				6EC2B4411CA461E2000A0E72 /* AppDelegate.swift */,
-				6EC2B4631CA46260000A0E72 /* DigitView.swift */,
-				6EC2B4651CA53C4D000A0E72 /* DigitControllerView.swift */,
-				6EC2B4721CA57B79000A0E72 /* CodeForCharacter.swift */,
-				6EC2B46E1CA57561000A0E72 /* Extension+UIColor.swift */,
-				6EC2B46B1CA574DE000A0E72 /* alt */,
+				6EC2B46B1CA574DE000A0E72 /* DisplayView */,
 				6EC2B4451CA461E2000A0E72 /* Main.storyboard */,
 				6EC2B4481CA461E2000A0E72 /* Assets.xcassets */,
-				6EC2B4741CA58A42000A0E72 /* displayBackground1.png */,
-				6EC2B4761CA58ACD000A0E72 /* displayBackground.png */,
-				6EC2B4781CA58AD9000A0E72 /* background2.png */,
-				6EC2B4701CA576CB000A0E72 /* displayBackgroundImage.png */,
 				6EC2B44A1CA461E2000A0E72 /* LaunchScreen.storyboard */,
 				6EC2B44D1CA461E2000A0E72 /* Info.plist */,
 			);
@@ -131,13 +108,15 @@
 			path = TDDLaufschriftPruefungsAufgabeTests;
 			sourceTree = "<group>";
 		};
-		6EC2B46B1CA574DE000A0E72 /* alt */ = {
+		6EC2B46B1CA574DE000A0E72 /* DisplayView */ = {
 			isa = PBXGroup;
 			children = (
-				6EC2B4691CA574D4000A0E72 /* DisplayController.swift */,
-				6EC2B4671CA574CE000A0E72 /* DisplayDigit.swift */,
+				6EC2B4651CA53C4D000A0E72 /* DisplayView.swift */,
+				6EC2B4721CA57B79000A0E72 /* CodeForCharacter.swift */,
+				6EC2B46E1CA57561000A0E72 /* Extension+UIColor.swift */,
+				6EC2B4761CA58ACD000A0E72 /* displayBackground.png */,
 			);
-			name = alt;
+			name = DisplayView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,10 +202,7 @@
 			files = (
 				6EC2B44C1CA461E2000A0E72 /* LaunchScreen.storyboard in Resources */,
 				6EC2B4491CA461E2000A0E72 /* Assets.xcassets in Resources */,
-				6EC2B4791CA58AD9000A0E72 /* background2.png in Resources */,
 				6EC2B4771CA58ACD000A0E72 /* displayBackground.png in Resources */,
-				6EC2B4751CA58A42000A0E72 /* displayBackground1.png in Resources */,
-				6EC2B4711CA576CB000A0E72 /* displayBackgroundImage.png in Resources */,
 				6EC2B4471CA461E2000A0E72 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,13 +222,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EC2B4731CA57B79000A0E72 /* CodeForCharacter.swift in Sources */,
-				6EC2B4661CA53C4D000A0E72 /* DigitControllerView.swift in Sources */,
+				6EC2B4661CA53C4D000A0E72 /* DisplayView.swift in Sources */,
 				6EC2B4441CA461E2000A0E72 /* ViewController.swift in Sources */,
-				6EC2B46A1CA574D4000A0E72 /* DisplayController.swift in Sources */,
-				6EC2B46D1CA57546000A0E72 /* TrainInfo.swift in Sources */,
-				6EC2B4681CA574CE000A0E72 /* DisplayDigit.swift in Sources */,
 				6EC2B4421CA461E2000A0E72 /* AppDelegate.swift in Sources */,
-				6EC2B4641CA46260000A0E72 /* DigitView.swift in Sources */,
 				6EC2B46F1CA57561000A0E72 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
